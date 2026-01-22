@@ -9,32 +9,37 @@ import Pagetitle from "@/components/pagetitle.astro";
 <Layout title="Contact">
   <Container>
     <Pagetitle>
-      <Fragment slot="title">Contact</Fragment>
-      <Fragment slot="desc">We are a here to help.</Fragment>
+      <Fragment slot="title">Partnerships & Media</Fragment>
+      <Fragment slot="desc">
+        Collaborations, press, and professional inquiries
+      </Fragment>
     </Pagetitle>
 
     <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
       <div>
         <h2 class="font-medium text-2xl text-gray-800 dark:text-gray-200">
-          Contact Us
+          Work With Us
         </h2>
         <p
           class="text-lg leading-relaxed text-gray-500 dark:text-gray-400 mt-3">
-          Have something to say? We'd love to hear from you.
+          We partner with organizations, media outlets, and brands aligned with
+          high quality Counter-Strike analysis.
         </p>
+
         <div class="mt-5">
           <div
             class="flex items-center mt-2 space-x-2 text-gray-600 dark:text-gray-300">
             <Icon class="text-gray-400 w-4 h-4" name="heroicons:map-pin" />
             <span>Rockford, Michigan</span>
-          </div><div
+          </div>
+          <div
             class="flex items-center mt-2 space-x-2 text-gray-600 dark:text-gray-300">
-            <Icon class="text-gray-400 w-4 h-4" name="heroicons:envelope" /><a
-              href="mailto:nick@luniv.tech">nick@luniv.tech</a
-            >
+            <Icon class="text-gray-400 w-4 h-4" name="heroicons:envelope" />
+            <a href="mailto:nick@luniv.tech">nick@luniv.tech</a>
           </div>
         </div>
       </div>
+
       <div>
         <Contactform />
       </div>

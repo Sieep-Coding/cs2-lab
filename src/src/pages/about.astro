@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
-import { Image, getImage } from "astro:assets";
+import { Image } from "astro:assets";
 import { authors } from "@/data/authors";
 import Pagetitle from "@/components/pagetitle.astro";
 import Link from "@/components/ui/link.astro";
@@ -11,7 +11,7 @@ import Link from "@/components/ui/link.astro";
   <Container>
     <Pagetitle>
       <Fragment slot="title">About</Fragment>
-      <Fragment slot="desc">We are a small passionate team.</Fragment>
+      <Fragment slot="desc">Independent Counter-Strike analysis platform</Fragment>
     </Pagetitle>
 
     <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-4xl mt-12">
@@ -24,14 +24,13 @@ import Link from "@/components/ui/link.astro";
                 format="avif"
                 width={580}
                 height={580}
-                alt="Team"
+                alt={item.name}
                 class="w-[150px] h-[150px]"
               />
             </div>
 
             <div class="mt-4 text-center">
               <h3 class="text-sm text-gray-500 dark:text-gray-300">
-                {" "}
                 {item.name}
               </h3>
             </div>
@@ -40,14 +39,26 @@ import Link from "@/components/ui/link.astro";
       }
     </div>
 
-    <div class="mx-auto max-w-xl text-center mt-14">
+    <div class="mx-auto max-w-xl text-center mt-14 space-y-6">
       <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
         Founded by a Counter-Strike veteran with over 15 years of competitive
-        experience, this platform is dedicated to deep-tier analysis of the pro
-        scene.
+        experience, CS2 Lab is an independent platform focused on high-signal
+        analysis of the professional scene, map meta, and gameplay trends.
       </p>
-      <div class="mt-8">
-        <Link href="/contact" style="primary">Get in touch</Link>
+
+      <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+        We work with partners who value informed audiences, long-form analysis,
+        and content built for competitive Counter-Strike fans.
+      </p>
+      <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+        Sponsorships, media collaborations, and branded content inquiries are
+        welcome.
+      </p>
+
+      <div class="pt-4">
+        <Link href="/contact" style="primary">
+          Partnerships & Media Inquiries
+        </Link>
       </div>
     </div>
   </Container>
