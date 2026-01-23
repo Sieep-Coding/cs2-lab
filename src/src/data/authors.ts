@@ -14,6 +14,6 @@ export const authors: Props[] = [
     name: "Nick Stambaugh",
     slug: "nick-stambaugh",
     image: marioImage,
-    bio: "With roots in Counter-Strike dating back to 2009, Nick has witnessed the franchise transform from a mod-based grassroots scene to a global esports phenomenon. He provides high-level analysis on tactics and trends.",
+    bio: "Nick Stambaugh has been following pro Counter-Strike since 2009, he witnessed the franchise transform from a grassroots scene to a global esports phenomenon. Nick provides high-level analysis on tactics and trends.",
   },
 ];
