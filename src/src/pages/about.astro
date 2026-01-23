@@ -11,7 +11,9 @@ import Link from "@/components/ui/link.astro";
   <Container>
     <Pagetitle>
       <Fragment slot="title">About</Fragment>
-      <Fragment slot="desc">Independent Counter-Strike analysis platform</Fragment>
+      <Fragment slot="desc"
+        >Independent Counter-Strike analysis platform</Fragment
+      >
     </Pagetitle>
 
     <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-4xl mt-12">
@@ -39,25 +41,27 @@ import Link from "@/components/ui/link.astro";
       }
     </div>
 
-    <div class="mx-auto max-w-xl text-center mt-14 space-y-6">
-      <p class="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+    <div class="mx-auto mt-16 max-w-lg text-center space-y-5">
+      <p
+        class="inline-block rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+        Not affiliated with any organization, TO, or gambling site
+      </p>
+
+      <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
         Founded by a Counter-Strike veteran with over 15 years of competitive
-        experience, CS2 Lab is an independent platform focused on high-signal
-        analysis of the professional scene, map meta, and gameplay trends.
+        experience, <a href="https://counterstrike.blog/" class="font-medium underline">counterstrike.blog</a> is an independent
+        platform focused on high-signal analysis of the professional scene, map met a,
+        and gameplay trends.
       </p>
 
       <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
         We work with partners who value informed audiences, long-form analysis,
         and content built for competitive Counter-Strike fans.
       </p>
-      <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-        Sponsorships, media collaborations, and branded content inquiries are
-        welcome.
-      </p>
 
-      <div class="pt-4">
+      <div class="pt-6">
         <Link href="/contact" style="primary">
-          Partnerships & Media Inquiries
+          Partnerships &amp; Media Inquiries
         </Link>
       </div>
     </div>
