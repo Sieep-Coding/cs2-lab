@@ -15,7 +15,12 @@ import Link from "@/components/ui/link.astro";
         >Independent Counter-Strike analysis platform</Fragment
       >
     </Pagetitle>
-
+    <div class="mt-6 text-center">
+      <p
+        class="inline-block rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+        Not affiliated with any organization, TO, or gambling site
+      </p>
+    </div>
     <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-4xl mt-12">
       {
         authors.slice(0, 3).map((item) => (
@@ -41,17 +46,13 @@ import Link from "@/components/ui/link.astro";
       }
     </div>
 
-    <div class="mx-auto mt-16 max-w-lg text-center space-y-5">
-      <p
-        class="inline-block rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
-        Not affiliated with any organization, TO, or gambling site
-      </p>
-
+    <div class="mx-auto mt-6 max-w-lg text-center space-y-5">
       <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-        Founded by a Counter-Strike veteran with over 15 years of competitive
-        experience, <a href="https://counterstrike.blog/" class="font-medium underline">counterstrike.blog</a> is an independent
-        platform focused on high-signal analysis of the professional scene, map met a,
-        and gameplay trends.
+        <a
+          href="https://counterstrike.blog/"
+          class="font-medium underline">counterstrike.blog</a
+        > is an independent platform focused on high-signal analysis of the pro
+        scene, meta, and gameplay trends.
       </p>
 
       <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
