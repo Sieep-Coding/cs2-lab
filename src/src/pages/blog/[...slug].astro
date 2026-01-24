@@ -17,47 +17,79 @@ import type { Category } from "@/data/category";
 type Props = {
   post: CollectionEntry<"blog">;
   nextPost: CollectionEntry<"blog"> | null;
+  prevPost: CollectionEntry<"blog"> | null;
 };
 
 export async function getStaticPaths() {
   const blog = await getCollection("blog");
-  
-  // Sort posts by date so "next" follows chronological order
+
+  // Sort chronologically (Oldest to Newest)
   const sortedPosts = blog.sort(
-    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+    (a, b) => a.data.publishDate.valueOf() - b.data.publishDate.valueOf(),
   );
 
   return sortedPosts.map((post, index) => {
-    // The "next" post is actually the one with a lower index in a descending list
-    const nextPost = index > 0 ? sortedPosts[index - 1] : null;
-
     return {
       params: { slug: post.slug },
-      props: { post, nextPost },
+      props: {
+        post,
+        nextPost: sortedPosts[index + 1] || null,
+        prevPost: sortedPosts[index - 1] || null,
+      },
     };
   });
 }
 
-const { post, nextPost } = Astro.props;
+const { post, nextPost, prevPost } = Astro.props;
 
 const { Content, remarkPluginFrontmatter } = await post.render();
 
 const author = authors.find((item) => item.slug === post.data.author);
-const category = categories.find(
-  (item) => item.slug === post.data.category
-);
+const category = categories.find((item) => item.slug === post.data.category);
 
 // FIX 2: Ensure ogimage is a string for the Layout component
-const ogImageSrc = typeof post.data.image === 'string' 
-  ? post.data.image 
-  : post.data.image?.src;
+const ogImageSrc =
+  typeof post.data.image === "string" ? post.data.image : post.data.image?.src;
 
+// Social Share URLs
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || "https://yourdomain.com",
+);
+const encodedTitle = encodeURIComponent(post.data.title);
+const encodedURL = encodeURIComponent(canonicalURL.href);
+
+const shareLinks = [
+  {
+    name: "X",
+    href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedURL}`,
+    color: "hover:text-black dark:hover:text-white",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>`,
+  },
+  {
+    name: "Reddit",
+    href: `https://www.reddit.com/submit?url=${encodedURL}&title=${encodedTitle}`,
+    color: "hover:text-[#FF4500]",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.965 0 1.75.785 1.75 1.75 0 .658-.351 1.233-.887 1.556.063.4.098.808.098 1.22 0 3.36-3.975 6.085-8.875 6.085s-8.875-2.725-8.875-6.085c0-.412.035-.82.098-1.22a1.741 1.741 0 0 1-.887-1.556c0-.965.785-1.75 1.75-1.75.477 0 .899.182 1.207.491 1.194-.856 2.85-1.419 4.674-1.488l.93-4.388a.375.375 0 0 1 .443-.293l3.12.656c.101-.322.404-.556.763-.556zM8.5 11.25c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm7 0c-.69 0-1.25.56-1.25 1.25s.56 1.25 1.25 1.25 1.25-.56 1.25-1.25-.56-1.25-1.25-1.25zm-7 5c-.033 0-.06.015-.092.017a4.93 4.93 0 0 0 3.592 1.233 4.93 4.93 0 0 0 3.592-1.233c-.032-.002-.059-.017-.092-.017H8.5z"/></svg>`,
+  },
+  {
+    name: "Facebook",
+    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`,
+    color: "hover:text-[#1877F2]",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
+  },
+  {
+    name: "Copy Link",
+    href: "javascript:void(0);",
+    color: "hover:text-blue-500",
+    id: "copy-link-button",
+    isCopy: true,
+    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>`
+  }
+];
 ---
 
-<Layout
-  title={post.data.title}
-  desc={post.data.excerpt}
-  ogimage={ogImageSrc}>
+<Layout title={post.data.title} desc={post.data.excerpt} ogimage={ogImageSrc}>
   <Container>
     <div class="max-w-screen-md mx-auto">
       <div class="text-center">
@@ -93,8 +125,7 @@ const ogImageSrc = typeof post.data.image === 'string'
             <div class="flex items-center space-x-2 text-sm">
               <time
                 class="text-gray-500 dark:text-gray-400"
-                datetime={post.data.publishDate.toISOString()}> 
-                {/* FIX 3: .toISOString() converts Date object to string */}
+                datetime={post.data.publishDate.toISOString()}>
                 {getFormattedDate(post.data.publishDate)}
               </time>
             </div>
@@ -106,6 +137,34 @@ const ogImageSrc = typeof post.data.image === 'string'
 
   <div
     class="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video">
+    <div
+      class="flex items-center justify-center gap-4 mb-2 border-b border-gray-100 dark:border-gray-800 pb-6">
+      <span
+        class="text-sm font-semibold text-gray-400 uppercase tracking-widest"
+        >Share</span
+      >
+      <div class="flex gap-3">
+  {shareLinks.map((link) => (
+    link.isCopy ? (
+      <button
+        id="copy-link-button"
+        class={`text-gray-500 transition-colors duration-300 ${link.color}`}
+        aria-label="Copy Link"
+        set:html={link.icon}
+      />
+    ) : (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={`text-gray-500 transition-colors duration-300 ${link.color}`}
+        aria-label={`Share on ${link.name}`}
+        set:html={link.icon}
+      />
+    )
+  ))}
+</div>
+    </div>
     {
       post.data.image && (
         <Picture
@@ -137,22 +196,67 @@ const ogImageSrc = typeof post.data.image === 'string'
         </div>
       </div>
 
-      <div class="flex justify-center items-center gap-4 mt-7 mb-7">
-  <a
-    href="/"
-    class="px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-700 dark:text-white bg-blue-50 hover:bg-blue-100">
-    ← View all posts
-  </a>
+      <div
+        class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12 mb-7">
+        {
+          prevPost ? (
+            <a
+              href={`/blog/${prevPost.slug}`}
+              class="w-full sm:w-auto px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-700 dark:text-white bg-blue-50 hover:bg-blue-100 text-center">
+              ← Previous
+            </a>
+          ) : (
+            <div class="hidden sm:block w-24" />
+          )
+        }
 
-  {nextPost && (
-    <a
-      href={`/blog/${nextPost.slug}`}
-      class="px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-700 dark:text-white bg-blue-50 hover:bg-blue-100">
-      Next post →
-    </a>
-  )}
-</div>
+        <a
+          href="/"
+          class="w-full sm:w-auto px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-700 dark:text-white bg-blue-50 hover:bg-blue-100 text-center font-medium">
+          🏠 Home
+        </a>
+
+        {
+          nextPost ? (
+            <a
+              href={`/blog/${nextPost.slug}`}
+              class="w-full sm:w-auto px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-700 dark:text-white bg-blue-50 hover:bg-blue-100 text-center">
+              Next →
+            </a>
+          ) : (
+            <div class="hidden sm:block w-24" />
+          )
+        }
+      </div>
       {author && <Authorcard author={author as Author} />}
+          <div
+      class="flex items-center justify-center gap-4 mt-6 mb-2 border-b border-gray-100 dark:border-gray-800 pb-6">
+      <span
+        class="text-sm font-semibold text-gray-400 uppercase tracking-widest"
+        >Share</span
+      >
+      <div class="flex gap-3">
+        {
+          shareLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`text-gray-500 transition-colors duration-300 ${link.color}`}
+              aria-label={`Share on ${link.name}`}
+              set:html={link.icon}
+            />
+          ))
+        }
+      </div>
+    </div>
     </article>
   </Container>
 </Layout>
+  <script is:inline>
+    document.getElementById('copy-link-button')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    });
+  </script>
