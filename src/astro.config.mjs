@@ -8,11 +8,13 @@ import icon from "astro-icon";
 import { remarkReadingTime } from "./src/utils/all";
 
 export default defineConfig({
-  site: "https://stablo-astro.web3templates.com",
+  site: "https://counterstrike.blog/",
   markdown: {
     remarkPlugins: [remarkReadingTime],
     rehypePlugins: ["rehype-plugin-image-native-lazy-loading"],
     extendDefaultPlugins: true,
   },
-  integrations: [tailwind(), mdx(), sitemap(), icon()],
+  integrations: [tailwind(), mdx(), sitemap({
+    filter: (page) => page !== 'https://counterstrike.blog/compliance'
+  }), icon()],
 });
