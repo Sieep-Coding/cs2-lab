@@ -17,6 +17,7 @@ I used a [template](https://github.com/web3templates/stablo-astro) to create thi
 ![Screenshot](./src/public/opengraph.png)
 
 
+### TailwindCSS
 
 TailwindCSS is already configured in this repo, so you can start using it without any installation.
 

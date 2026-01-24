@@ -1,4 +1,7 @@
 # counterstrike.blog source code
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/cs2-lab?style=plastic)
+
+Content licensed under [CC BY-NC-SA 4.0](LICENSE-CONTENT.md)
 
 ## Live Demo
 
@@ -14,6 +17,7 @@ I used a [template](https://github.com/web3templates/stablo-astro) to create thi
 ![Screenshot](../src/public/opengraph.png)
 
 
+### TailwindCSS
 
 TailwindCSS is already configured in this repo, so you can start using it without any installation.
 
