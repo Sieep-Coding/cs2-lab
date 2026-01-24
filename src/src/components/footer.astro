@@ -6,9 +6,7 @@ import Themeswitch from "./themeswitch.astro";
 <Container class="mt-6 border-t border-gray-100 dark:border-gray-800">
   <footer
     class="flex flex-col items-center gap-2 py-4 text-sm text-gray-500 dark:text-gray-600">
-    <!-- Theme switch -->
     <Themeswitch />
-    <!-- Primary links -->
     <nav class="flex items-center gap-4">
       <a
         href="https://github.com/sieep-coding/cs2-lab"
@@ -24,6 +22,12 @@ import Themeswitch from "./themeswitch.astro";
         rel="noopener"
         class="hover:text-gray-900 dark:hover:text-gray-300 transition underline">
         Support
+      </a>
+      <span aria-hidden="true">•</span>
+      <a
+        href="/compliance"
+        class="hover:text-gray-900 dark:hover:text-gray-300 transition underline">
+        Privacy & Compliance
       </a>
     </nav>
 
@@ -48,7 +52,6 @@ import Themeswitch from "./themeswitch.astro";
       </p>
     </div>
 
-    <!-- Copyright -->
     <div class="pt-4 text-xs text-gray-400 dark:text-gray-500">
       © {new Date().getFullYear()} Luniv Technology. All rights reserved.
     </div>

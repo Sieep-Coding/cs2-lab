@@ -1,0 +1,137 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Pagetitle from "@/components/pagetitle.astro";
+---
+
+<Layout title="Compliance & Privacy">
+  <Container>
+    <Pagetitle>
+      <Fragment slot="title">Privacy & Data Compliance</Fragment>
+      <Fragment slot="desc">
+        How we collect, use, and protect personal data
+      </Fragment>
+    </Pagetitle>
+
+    <div
+      class="max-w-3xl mx-auto mt-12 space-y-8 text-gray-600 dark:text-gray-400 leading-relaxed">
+      <section>
+        <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">
+          Overview
+        </h2>
+        <p class="mt-2">
+          <ol>
+            <li><b>We do not sell your data.</b></li>
+            <li><b>We do not collect cookies.</b></li>
+            <li>
+              <b
+                >We only collect data you voluntarily provide through our
+                contact form.</b>
+            </li>
+          </ol>
+          <br />This website respects your privacy and is committed to
+          complying with applicable data protection laws, including the General
+          Data Protection Regulation (GDPR).
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">
+          Data We Collect
+        </h2>
+        <p class="mt-2">
+          We only collect personal data that you voluntarily provide through the
+          contact form. This data is stored in <a
+            class="underline"
+            href="https://formspree.io/"
+            target="_blank"
+            rel="noopener">formspree</a
+          > and our company database.
+          <br /><br />
+          This may include:
+        </p>
+        <ul class="list-disc list-inside mt-2">
+          <li>Name</li>
+          <li>Email address</li>
+          <li>Message content</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">
+          How We Use Your Data
+        </h2>
+        <p class="mt-2">
+          Submitted information is used solely to respond to inquiries related
+          to partnerships, media, or professional communication.
+        </p>
+        <p class="mt-2">
+          We do not sell, rent, or share personal data with third parties.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">
+          Legal Basis for Processing
+        </h2>
+        <p class="mt-2">
+          Data is processed based on legitimate interest and user consent, as
+          defined under Article 6 of the GDPR.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">
+          Data Retention
+        </h2>
+        <p class="mt-2">
+          Personal data is retained only as long as necessary to respond to your
+          inquiry. <b>Afterward, data is deleted.</b>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">
+          Your Rights
+        </h2>
+        <p class="mt-2">
+          Under GDPR, you have the right to request access, correction, or
+          deletion of your personal data.
+        </p>
+        <p class="mt-2">
+          Requests can be made by contacting:
+          <a
+            href="mailto:nick@luniv.tech"
+            class="underline ml-1 hover:text-gray-900 dark:hover:text-gray-300">
+            nick@luniv.tech
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">
+          Cookies & Analytics
+        </h2>
+        <p class="mt-2">
+          This site may use minimal, privacy-focused analytics. No personally
+          identifiable information is collected through cookies.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200">
+          Contact
+        </h2>
+        <p class="mt-2">
+          If you have questions regarding privacy or data protection, please
+          contact us at
+          <a
+            href="mailto:nick@luniv.tech"
+            class="underline ml-1 hover:text-gray-900 dark:hover:text-gray-300">
+            nick@luniv.tech</a
+          >.
+        </p>
+      </section>
+    </div>
+  </Container>
+</Layout>
