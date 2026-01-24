@@ -21,31 +21,6 @@ import Link from "@/components/ui/link.astro";
         Not affiliated with Valve, any organization, TO, or gambling site
       </p>
     </div>
-     <div class="grid md:grid-cols-1 gap-10 mx-auto max-w-4xl mt-12">
-      {
-        authors.slice(0, 3).map((item) => (
-          <div class="group">
-            <p class="text-center">Website Owner</p>
-            <div class="flex items-center justify-center w-40 h-40 mx-auto overflow-hidden rounded-full bg-gray-100 dark:bg-gray-800">
-              <Image
-                src={item.image}
-                format="avif"
-                width={580}
-                height={580}
-                alt={item.name}
-                class="w-[150px] h-[150px]"
-              />
-            </div>
-
-            <div class="mt-4 text-center">
-              <a href="https://nickstambaugh.dev/" class="text-sm text-gray-500 dark:text-gray-300 underline">
-                {item.name}
-              </a>
-            </div>
-          </div>
-        ))
-      }
-    </div>-->
 
     <div class="mx-auto mt-6 max-w-lg text-center space-y-5">
       <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
