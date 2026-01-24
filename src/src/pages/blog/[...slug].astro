@@ -16,18 +16,29 @@ import type { Category } from "@/data/category";
 
 type Props = {
   post: CollectionEntry<"blog">;
+  nextPost: CollectionEntry<"blog"> | null;
 };
 
 export async function getStaticPaths() {
   const blog = await getCollection("blog");
+  
+  // Sort posts by date so "next" follows chronological order
+  const sortedPosts = blog.sort(
+    (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+  );
 
-  return blog.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  return sortedPosts.map((post, index) => {
+    // The "next" post is actually the one with a lower index in a descending list
+    const nextPost = index > 0 ? sortedPosts[index - 1] : null;
+
+    return {
+      params: { slug: post.slug },
+      props: { post, nextPost },
+    };
+  });
 }
 
-const { post } = Astro.props;
+const { post, nextPost } = Astro.props;
 
 const { Content, remarkPluginFrontmatter } = await post.render();
 
@@ -126,13 +137,21 @@ const ogImageSrc = typeof post.data.image === 'string'
         </div>
       </div>
 
-      <div class="flex justify-center mt-7 mb-7">
-        <a
-          href="/"
-          class="px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-700 dark:text-white bg-blue-50 hover:bg-blue-100">
-          ← View all posts
-        </a>
-      </div>
+      <div class="flex justify-center items-center gap-4 mt-7 mb-7">
+  <a
+    href="/"
+    class="px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-700 dark:text-white bg-blue-50 hover:bg-blue-100">
+    ← View all posts
+  </a>
+
+  {nextPost && (
+    <a
+      href={`/blog/${nextPost.slug}`}
+      class="px-5 py-3 text-sm text-blue-600 transition rounded-md dark:bg-gray-700 dark:text-white bg-blue-50 hover:bg-blue-100">
+      Next post →
+    </a>
+  )}
+</div>
       {author && <Authorcard author={author as Author} />}
     </article>
   </Container>
