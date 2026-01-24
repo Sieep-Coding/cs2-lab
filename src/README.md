@@ -15,9 +15,9 @@ I used a [template](https://github.com/web3templates/stablo-astro) to create thi
 
 
 
-TailwindCSS is already configured in this repo, so you can start using them without any installation.
+TailwindCSS is already configured in this repo, so you can start using it without any installation.
 
-## 👀 Want to learn more?
+## Want to learn more?
 
 Feel free to check out [Astro Docs](https://docs.astro.build)
 
