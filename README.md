@@ -1,4 +1,7 @@
 # counterstrike.blog source code
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/cs2-lab?style=plastic)
+
+Content licensed under [CC BY-NC-SA 4.0](LICENSE-CONTENT.md)
 
 ## Live Demo
 

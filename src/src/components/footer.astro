@@ -6,7 +6,11 @@ import Themeswitch from "./themeswitch.astro";
 <Container class="mt-6 border-t border-gray-100 dark:border-gray-800">
   <footer
     class="flex flex-col items-center gap-2 py-4 text-sm text-gray-500 dark:text-gray-600">
+
+    <!-- Theme switch -->
     <Themeswitch />
+
+    <!-- Primary links -->
     <nav class="flex items-center gap-4">
       <a
         href="https://github.com/sieep-coding/cs2-lab"
@@ -29,9 +33,36 @@ import Themeswitch from "./themeswitch.astro";
         class="hover:text-gray-900 dark:hover:text-gray-300 transition underline">
         Privacy
       </a>
+      <span aria-hidden="true">•</span>
+      <a
+        href="https://github.com/Sieep-Coding/cs2-lab/blob/main/LICENSE"
+        target="_blank"
+        rel="noopener"
+        class="hover:text-gray-900 dark:hover:text-gray-300 transition underline">
+        Code License (GPL)
+      </a>
     </nav>
 
-    <div class="max-w-xl text-center leading-relaxed">
+    <!-- Licensing info -->
+    <div class="max-w-xl text-center leading-relaxed mt-3">
+      <p>
+        Content licensed under <a
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+          target="_blank"
+          rel="noopener"
+          class="underline hover:text-gray-900 dark:hover:text-gray-300"
+        >CC BY-NC-SA 4.0</a>. 
+        Code licensed under <a
+          href="https://github.com/Sieep-Coding/cs2-lab/blob/main/LICENSE"
+          target="_blank"
+          rel="noopener"
+          class="underline hover:text-gray-900 dark:hover:text-gray-300"
+        >GNU GPL v3</a>.
+      </p>
+    </div>
+
+    <!-- Affiliate & legal disclaimers -->
+    <div class="max-w-xl text-center leading-relaxed mt-2">
       <p>
         This site is not affiliated with
         <a
@@ -40,20 +71,20 @@ import Themeswitch from "./themeswitch.astro";
           rel="noopener"
           class="mx-1 underline hover:text-gray-900 dark:hover:text-gray-300"
           >Valve</a
-        >
-        <br />
+        >.
         All trademarks and logos belong to their respective owners.
       </p>
 
       <p class="mt-2">
         18+ only <span aria-hidden="true">•</span> Gamble responsibly <span
-          aria-hidden="true">•</span
-        > No betting or financial advice.
+          aria-hidden="true">•</span> No betting or financial advice.
       </p>
     </div>
 
+    <!-- Copyright -->
     <div class="pt-4 text-xs text-gray-400 dark:text-gray-500">
       © {new Date().getFullYear()} Luniv Technology. All rights reserved.
     </div>
+
   </footer>
 </Container>
