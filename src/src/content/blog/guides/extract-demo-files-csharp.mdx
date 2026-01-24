@@ -1,0 +1,85 @@
+---
+
+title: "High-Performance CS2 Demo Analysis with .NET" 
+excerpt: "A deep dive into DemoFile.Net, a  C# parser that processes full Counter-Strike 2 matches in under 500ms." 
+publishDate: "2026-01-24T13:15:00Z" 
+category: "guides" 
+draft: false 
+image: "../../../assets/blog/cs2-demo-parsing.png" 
+author: "nick-stambaugh" 
+tags: [cs2, dot-net, software-engineering, data-science, demofile-net]
+---
+
+> With Source 2, the format of `.dem` files has evolved, and so has the tooling required to interrogate them.
+
+The transition to Counter-Strike 2 introduced complex systems like **sub-tick architecture** and **volumetric smoke**. While most players experience these through gameplay, we can analyze their implementation by parsing demo files—the serialized event streams of every tick in a match.
+
+For a .NET developer, the barrier to entry for high-level game analytics has never been lower, thanks to `DemoFile.Net`.
+
+## Why DemoFile.Net?
+
+While Python is the standard for general data science, **DemoFile.Net** offers performance that is critical for processing large datasets of professional matches. On an M1 MacBook Pro, this library can parse a full competitive game in **1.3 seconds**.
+
+When utilizing `ReadAllParallelAsync`, that time drops to nearly **500 milliseconds**. For a SaaS platform or a high-frequency trading bot for skins, that throughput is a massive architectural win.
+
+## Getting Started
+
+To begin extracting data from CS2 demos, you'll need the core parser package:
+
+```bash
+dotnet add package DemoFile.Game.Cs
+```
+
+### Example: The Kill Feed
+
+The library provides a strongly-typed API for game events, allowing you to hook into the "Source 1" style events that still underpin the match logic.
+
+```csharp
+using DemoFile;
+
+var demo = new CsDemoParser();
+
+// Subscribe to player death events
+demo.Source1GameEvents.PlayerDeath += e =>
+{
+    Console.WriteLine($"{e.Attacker?.PlayerName} [{e.Weapon}] {e.Player?.PlayerName}");
+};
+
+var reader = DemoFileReader.Create(demo, File.OpenRead("match.dem"));
+await reader.ReadAllAsync();
+
+```
+
+---
+
+## Quantifying Patch Notes: Movement & Velocity
+
+In the [recent January 23rd update](https://www.google.com/search?q=/blog/cs2-patch-small), Valve tweaked landing velocity penalties. 
+
+As engineers, we can verify this change by tracking player "Pawns" and their vertical velocity vectors across thousands of ticks.
+
+Using the `TickEnd` event, we can capture spatial data for every player on the map:
+
+```csharp
+demo.TickEnd += (_, tick) => {
+    foreach (var player in demo.Entities.Players)
+    {
+        if (player.Pawn is { } pawn)
+        {
+            var pos = pawn.CBodyComponent?.Position;
+            var vel = pawn.AbsVelocity;
+            // Log velocity to analyze the 'sv_legacy_jump_stamina' behavior
+        }
+    }
+};
+
+```
+
+This level of detail allows us to build **Heatmaps** and **Velocity Curves** that prove exactly how much a player is slowed down after dropping from a specific height on a map like Anubis.
+
+## Key Features for Engineers
+
+* **Cross-Platform:** Runs on Windows, Mac, and Linux via .NET 6+.
+* **Entity Updates:** Full support for tracking grenade trajectories, player positions, and equipment.
+* **HTTP Broadcasts:** Capability to parse live GOTV broadcasts for real-time dashboarding.
+* **Zero-Copy Logic:** Designed for minimal allocations to maintain that sub-second parsing speed.
