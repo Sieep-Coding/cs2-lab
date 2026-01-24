@@ -3,6 +3,7 @@ import Container from "@/components/container.astro";
 import Postlist from "@/components/postlist.astro";
 import Layout from "@/layouts/Layout.astro";
 import { latestPosts } from "@/utils/content";
+import { late } from "astro:schema";
 // Use Astro.glob() to fetch all posts, and then sort them by date.
 // const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
 //   (a, b) =>
@@ -10,6 +11,8 @@ import { latestPosts } from "@/utils/content";
 //     new Date(a.frontmatter.publishDate).valueOf()
 // );
 // console.log(posts[0].frontmatter.image);
+
+const posts = latestPosts.slice(0, 8);
 ---
 
 <Layout title="">
@@ -17,7 +20,7 @@ import { latestPosts } from "@/utils/content";
     <main>
       <div class="grid gap-10 lg:gap-10 md:grid-cols-2">
         {
-          latestPosts
+          posts
             .slice(0, 2)
             .map((post) => (
               <Postlist post={post} aspect="landscape" preloadImage={true} />
@@ -26,7 +29,7 @@ import { latestPosts } from "@/utils/content";
       </div>
       <div class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
         {
-          latestPosts
+          posts
             .slice(2)
             .map((post) => <Postlist post={post} aspect="square" />)
         }
