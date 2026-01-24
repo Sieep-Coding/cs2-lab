@@ -22,8 +22,6 @@ type Props = {
 
 export async function getStaticPaths() {
   const blog = await getCollection("blog");
-
-  // Sort chronologically (Oldest to Newest)
   const sortedPosts = blog.sort(
     (a, b) => a.data.publishDate.valueOf() - b.data.publishDate.valueOf(),
   );
@@ -50,7 +48,6 @@ const category = categories.find((item) => item.slug === post.data.category);
 const ogImageSrc =
   typeof post.data.image === "string" ? post.data.image : post.data.image?.src;
 
-// Social Share URLs
 const canonicalURL = new URL(
   Astro.url.pathname,
   Astro.site || "https://yourdomain.com",
@@ -137,7 +134,7 @@ const shareLinks = [
         </div>
       </div>
       
-      <div class="flex items-center justify-center gap-4 mt-8 pb-6 border-b border-gray-100 dark:border-gray-800">
+      <div class="flex items-center justify-center gap-4 mt-4 pb-6 border-b border-gray-100 dark:border-gray-800">
         <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Share</span>
         <div class="flex gap-4">
           {shareLinks.map((link) => (
@@ -164,7 +161,7 @@ const shareLinks = [
     </div>
   </Container>
 
-  <div class="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video mt-8">
+  <div class="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video mt-4">
     {post.data.image && (
       <Picture
         src={post.data.image}
@@ -224,7 +221,6 @@ const shareLinks = [
       copyBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(window.location.href).then(() => {
           const originalContent = copyBtn.innerHTML;
-          // Simple visual feedback
           copyBtn.style.color = '#3b82f6';
           setTimeout(() => {
             copyBtn.style.color = '';
