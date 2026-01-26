@@ -36,6 +36,8 @@ Real-world throughput:
 
 On a 4-core machine processing 50 demos, you're looking at sustained 400MB/s parsing.
 
+This is aggregate throughput across cores with demos already resident in the OS page cache.
+
 ## Installation
 
 ```bash
@@ -122,7 +124,7 @@ From here, you can compute heatmaps, detect unusual patterns (players in walls),
 
 ## Grenade Tracking
 
-Utility usage drives rounds. 
+Utility usage drives rounds. These entities behave like any ECS object in a real-time simulation.
 
 CS2 grenades are entities too:
 
