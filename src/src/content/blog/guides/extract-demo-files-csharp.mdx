@@ -23,13 +23,13 @@ With DemoFile.Net, you can extract data from competitive matches using C# and .N
 
 Although this guide uses CS2 as the example, the underlying techniques apply broadly to engineering:
 
-- **Parsing large binary event streams** with strict ordering and high data density 
+- Parsing large binary event streams with strict ordering and high data density 
 
-- **Entity Component System (ECS) state reconstruction from deltas**, rather than full snapshots  
+- Entity Component System (ECS) state reconstruction from deltas, rather than full snapshots  
 
-- **High-throughput file-level parallelism** for batch processing at scale 
+- High-throughput file-level parallelism for batch processing at scale 
 
-- **Deterministic replay systems** for post-hoc analysis and simulation
+- Deterministic replay systems for post-hoc analysis and simulation
 
 The same patterns appear in telemetry pipelines, distributed game servers, and other event driven systems.
 
@@ -254,7 +254,9 @@ This gives you empirical proof of how movement mechanics work.
 
 ## Common Pitfalls
 
-**Null safety.** Entities are created and destroyed mid-demo. Always check for null:
+Null safety. 
+
+Entities are created and destroyed mid-demo. Always check for null:
 
 ```csharp
 if (player.Pawn?.CBodyComponent?.Position is { } pos)
@@ -263,9 +265,13 @@ if (player.Pawn?.CBodyComponent?.Position is { } pos)
 }
 ```
 
-**Tick timing.** Not all ticks fire all events. `TickEnd` fires for most ticks, but some events happen between ticks. If you need precise timing, cross-reference with the timestamp in the event itself.
+Tick timing. 
 
-**Memory in loops.** Allocating strings or lists inside `TickEnd` will cause GC pressure. Use object pools or `ValueTuple` where possible:
+Not all ticks fire all events. `TickEnd` fires for most ticks, but some events happen between ticks. If you need precise timing, cross-reference with the timestamp in the event itself.
+
+Memory in loops. 
+
+Allocating strings or lists inside `TickEnd` will cause GC pressure. Use object pools or `ValueTuple` where possible:
 
 ```csharp
 // Bad
