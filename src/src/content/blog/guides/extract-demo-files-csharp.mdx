@@ -19,6 +19,20 @@ Parsing these used to require picking through C++ source code or relying on inco
 
 With DemoFile.Net, you can extract data from competitive matches using C# and .NET.
 
+## Why This Is Interesting Beyond CS2
+
+Although this guide uses CS2 as the example, the underlying techniques apply broadly to engineering:
+
+- **Parsing large binary event streams** with strict ordering and high data density 
+
+- **Entity Component System (ECS) state reconstruction from deltas**, rather than full snapshots  
+
+- **High-throughput file-level parallelism** for batch processing at scale 
+
+- **Deterministic replay systems** for post-hoc analysis and simulation
+
+The same patterns appear in telemetry pipelines, distributed game servers, and other event driven systems.
+
 ## The Performance Problem
 
 Processing demo files at scale is generally I/O bound. 
