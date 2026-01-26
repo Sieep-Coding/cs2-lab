@@ -24,5 +24,11 @@ export const categories: Props[] = [
     slug: "analysis",
     color: "purple",
     description: "Deep-dives into professional tactics, heatmaps, and the data-driven meta of top-tier CS2.",
+  },
+  {
+    title: "Videos",
+    slug: "videos",
+    color: "blue",
+    description: "Engaging video content including match highlights, player interviews, and expert breakdowns.",
   }
 ];

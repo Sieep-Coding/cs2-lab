@@ -9,7 +9,8 @@ const BlogPosts = defineCollection({
       author: z.string().trim(),
       draft: z.boolean().optional(),
       tags: z.array(z.string()),
-      image: image(),
+      videoId: z.string().optional(), 
+      image: image().optional(), 
       publishDate: z.string().transform((str) => new Date(str)),
     }),
 });
