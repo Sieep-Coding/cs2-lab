@@ -1,0 +1,66 @@
+---
+
+title: "CS2 Patch Fixes Molotov Edge Cases and Cleans Up Stability"
+excerpt: "A maintenance-focused Counter-Strike 2 update tightens grenade behavior, resolves sound-related performance issues, and delivers incremental fixes across maps like Nuke, Warden, and Sanctum."
+publishDate: "2026-01-26T21:00:00Z"
+category: "guides"
+draft: false
+image: "../../../assets/blog/cs2-patch-small.jpg"
+author: "nick-stambaugh"
+tags: [cs2, patch-notes, gameplay, molotov, nuke]
+---
+
+> Today’s Counter-Strike 2 update is small in scope but addresses a few subtle issues that could surface in edge-case gameplay and system configurations.
+
+This patch continues Valve’s recent trend of targeted fixes rather than sweeping balance changes, focusing on grenade consistency, sound-system stability, and minor map polish.
+
+## Molotov and Incendiary Behavior
+
+Molotov and incendiary grenades now receive a **one-time fuse extension** if they bounce off an enemy player before touching the world.
+
+Previously, grenades that struck a player mid-air could prematurely detonate once their internal “has-never-hit-the-world” timer expired, leading to inconsistent air-bursts.
+
+Practically, this change:
+
+* Reduces unpredictable mid-air detonations
+* Improves reliability when throwing molotovs into close engagements
+* Ensures intended area denial rather than accidental early bursts
+
+For competitive play, this is a consistency fix more than a balance change, but it removes an unnecessary layer of randomness in tight fights.
+
+## Sound and Performance Fixes
+
+Valve resolved a performance issue affecting systems running CS2 **without an active sound device**.
+
+While uncommon, this scenario can apply to:
+
+* Certain server or testing environments
+* Misconfigured audio setups
+* Edge cases during streaming or capture workflows
+
+Additional updates include various knife sound adjustments, likely aimed at normalization and polish rather than gameplay impact.
+
+## Stability and Debug Improvements
+
+Several under-the-hood fixes were included:
+
+* Corrected broken `cl_ent_bbox` visualizations for certain rigid dynamic entities
+* General stability improvements
+
+These changes primarily affect debugging, development, and long-session reliability rather than moment-to-moment gameplay.
+
+## Map Updates
+
+### Nuke
+
+A minor visual fix adjusts the render bounds of a hanging hard hat model to prevent shadow popping when exiting the view frustum. This has no gameplay impact but improves visual consistency.
+
+### Warden and Sanctum
+
+Both maps were updated to their latest Community Workshop versions. As with most workshop syncs, these updates typically include small layout tweaks, collision fixes, or visual refinements rather than structural changes.
+
+## Competitive Takeaway
+
+This patch will not alter metas or strategies, but it improves consistency in grenade behavior and reduces the likelihood of rare but frustrating edge cases.
+
+Players are unlikely to *feel* most of these changes directly, but competitive integrity benefits from fewer unpredictable interactions especially in utility-heavy situations.
