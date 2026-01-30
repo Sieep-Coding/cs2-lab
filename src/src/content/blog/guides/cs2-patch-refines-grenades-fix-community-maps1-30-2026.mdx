@@ -1,0 +1,76 @@
+---
+title: "CS2 Update Refines HE Grenade Damage and Tightens Community Map Controls"
+excerpt: "A small Counter-Strike 2 update improves grenade damage accuracy, applies minor sound polish, introduces new safeguards for community maps, and delivers performance optimizations in unlikely places."
+publishDate: "2026-01-30T21:00:00Z"
+category: "guides"
+draft: false
+image: "../../../assets/blog/cs2-demo-parsing.png"
+author: "nick-stambaugh"
+tags: [cs2, patch-notes, gameplay, grenades, community-maps]
+---
+
+> Valve shipped a lightweight Counter-Strike 2 update focused on correcting edge-case gameplay logic, tightening community map permissions, and applying a handful of stability and performance fixes.
+
+As with recent patches, this update favors precision and control over headline-grabbing changes but several items are relevant for competitive integrity and custom content.
+
+## HE Grenade Damage Calculation
+
+High-Explosive grenades that detonate **mid-air near the ground** will no longer have their damage calculated as if they exploded on the ground.
+
+Previously, air-burst grenades close to terrain could incorrectly benefit from ground-based damage assumptions, potentially inflating damage values in rare scenarios.
+
+This fix:
+
+* Improves physical accuracy of grenade damage falloff
+* Reduces inconsistent chip damage from near-ground air bursts
+* Aligns visual detonation behavior with damage logic
+
+For competitive play, this is a subtle but important correction that removes a small source of unintended variance.
+
+## Sound Adjustments
+
+Valve applied various knife sound tweaks.
+
+While no specific details were provided, changes of this type typically involve:
+
+* Volume normalization
+* Improved spatial consistency
+* Minor asset cleanup
+
+These adjustments are unlikely to affect gameplay directly but contribute to overall audio polish and clarity.
+
+## Miscellaneous Fixes and Improvements
+
+Several under-the-hood changes were included:
+
+* **Performance optimizations for exploding chickens**, an edge-case interaction but one that can occur frequently on certain maps
+* Fixed a map scripting issue where `Entity.SetOwner` failed when passed `undefined`
+* Added a new mechanism for community maps to persist modified user settings
+
+Community maps can now request permission to save select user settings (radar, viewmodel, safezones, etc.) using the command:
+
+* `host_writeconfig_with_prompt`
+
+If accepted by the player, approved settings will persist after exiting the map.
+
+In parallel, community maps are now restricted to a **smaller, more controlled list of allowed console commands**, reducing the risk of abuse.
+
+## Map Updates
+
+### Stronghold
+
+Stronghold has been updated to the latest version from the Community Workshop.
+
+As with most workshop syncs, this likely includes a combination of bug fixes, visual adjustments, and minor scripting refinements.
+
+## Competitive Takeaway
+
+This update will not change metas or strategies but it meaningfully improves control:
+
+* Grenade damage behaves more predictably
+* Community maps gain safer persistence mechanisms
+* Edge-case performance and scripting bugs are resolved
+
+For competitive players the value lies in consistency. 
+
+For map creators the new configuration safeguards and persistence options provide more flexibility without compromising player trust.
