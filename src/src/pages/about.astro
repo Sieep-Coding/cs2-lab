@@ -1,8 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
-import { Image } from "astro:assets";
-import { authors } from "@/data/authors";
 import Pagetitle from "@/components/pagetitle.astro";
 import Link from "@/components/ui/link.astro";
 ---
@@ -11,34 +9,42 @@ import Link from "@/components/ui/link.astro";
   <Container>
     <Pagetitle>
       <Fragment slot="title">About</Fragment>
-      <Fragment slot="desc"
-        ></Fragment
-      >
+      <Fragment slot="desc">Independent Analysis for the Competitive Scene</Fragment>
     </Pagetitle>
+
     <div class="mt-6 text-center">
-      <p
-        class="inline-block rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
-        Not affiliated with Valve, any organization, TO, or gambling site
+      <p class="inline-block rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+        Independent & Unaffiliated: Not associated with Valve, TOs, or gambling sites.
       </p>
     </div>
 
-    <div class="mx-auto mt-6 max-w-lg text-center space-y-5">
+    <div class="mx-auto mt-8 max-w-lg text-center space-y-6">
       <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-        <a
-          href="https://counterstrike.blog/"
-          class="font-medium underline">counterstrike.blog</a
-        > is an independent platform focused on high-signal analysis of the pro
-        scene, meta, and gameplay trends.
+        <a href="https://counterstrike.blog/" class="font-medium underline decoration-cyan-500 underline-offset-4">
+          counterstrike.blog</a> 
+        is a dedicated platform for high-signal analysis, meta shifts, and professional gameplay trends.
       </p>
 
       <p class="text-base leading-relaxed text-gray-600 dark:text-gray-400">
-        We work with media partners and community organizations who value informed audiences, long-form analysis,
-        and content built for competitive Counter-Strike fans.
+        I collaborate with media partners and community organizations who value informed audiences 
+        and long-form content built for the competitive Counter-Strike purist.
       </p>
 
-      <div class="pt-6">
+      <div class="pt-2">
         <Link href="/contact" style="primary">
-          Partnerships &amp; Media Inquiries
+          Partnerships & Media Inquiries
+        </Link>
+      </div>
+
+      <div class="pt-4">
+        <p class="inline-block rounded-full bg-cyan-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-cyan-800 dark:bg-cyan-900/30 dark:text-cyan-300">
+          Curated with care around a full-time career
+        </p>
+      </div>
+
+      <div class="pt-2">
+        <Link href="https://buymeacoffee.com/nickstambaugh" style="primary">
+          Support the Project
         </Link>
       </div>
     </div>
