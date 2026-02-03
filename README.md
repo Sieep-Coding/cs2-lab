@@ -1,7 +1,7 @@
 # counterstrike.blog source code
 ![Vercel Deploy](https://deploy-badge.vercel.app/vercel/cs2-lab?style=plastic)
 
-Content licensed under [CC BY-NC-SA 4.0](LICENSE-CONTENT.md), code licensed under [GPL-3.0](https://github.com/Sieep-Coding/cs2-lab/tree/main?tab=GPL-3.0-1-ov-file)
+Content licensed under [CC BY-NC-SA 4.0](LICENSE-CONTENT.md), code licensed under [GPL-3.0](https://github.com/Sieep-Coding/cs2-lab/tree/main?tab=GPL-3.0-1-ov-file).
 
 ## Live Demo
 
