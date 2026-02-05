@@ -11,9 +11,9 @@ export type Author = Props;
 
 export const authors: Props[] = [
   {
-    name: "Nick s",
+    name: "Nick S",
     slug: "nick-s",
     image: marioImage,
-    bio: "Nick s has been following pro Counter-Strike since 2009. He witnessed the franchise transform from a grassroots scene to a global esports phenomenon. Nick provides high-level analysis on tactics and trends.",
+    bio: "Nick S has been following pro Counter-Strike since 2009. He witnessed the franchise transform from a grassroots scene to a global esports phenomenon. Nick provides high-level analysis on tactics and trends.",
   },
 ];
